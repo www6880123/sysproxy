@@ -14,7 +14,7 @@ public class SysUser {
     private String salt;
     private String email;
     private String mobile;
-    private Double status;
+    private Integer status;
     private BigInteger deptid;
     private Date createtime;
 
