@@ -1,11 +1,14 @@
 package com.example.sys.controller;
 
-import com.example.sys.entity.SysUser;
 import com.example.sys.service.SysService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/sys")
@@ -15,13 +18,20 @@ public class SysController {
     private SysService sysService;
 
     @PostMapping("/login/{username}/{password}")
-    public String login(@PathVariable("username") String username,@PathVariable("password") String password, HttpServletResponse response){
-        SysUser sysUserLogin = sysService.loginUser(username,password);
-        System.out.println(sysUserLogin.getUserid());
-        if(sysUserLogin!=null){
-            return "有这个账号";
-        }else {
-            return "无这个账号";
+    public String login(@PathVariable("username") String username, @PathVariable("password") String password, Model model){
+        //获取subject
+        Subject subject = SecurityUtils.getSubject();
+        //封装用户数据
+        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+        try {
+            subject.login(token);
+            return "redirect:/index";
+        } catch (UnknownAccountException e) {
+            model.addAttribute("msg","用户名不存在");
+            return "/login";
+        } catch (IncorrectCredentialsException e) {
+            model.addAttribute("msg","密码错误");
+            return "/login";
         }
     }
 
