@@ -8,7 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan(basePackages = "com.example.sys.dao")
 public class SysproxyApplication {
 
+
     public static void main(String[] args) {
+
         SpringApplication.run(SysproxyApplication.class, args);
     }
 

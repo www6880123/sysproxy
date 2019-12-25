@@ -15,12 +15,13 @@ public class SysController {
     private SysService sysService;
 
     @PostMapping("/login/{username}/{password}")
-    public void login(@PathVariable("username") String username,@PathVariable("password") String password, HttpServletResponse response){
+    public String login(@PathVariable("username") String username,@PathVariable("password") String password, HttpServletResponse response){
         SysUser sysUserLogin = sysService.loginUser(username,password);
+        System.out.println(sysUserLogin.getUserid());
         if(sysUserLogin!=null){
-            System.out.println("111");
+            return "有这个账号";
         }else {
-            System.out.println("222");
+            return "无这个账号";
         }
     }
 
