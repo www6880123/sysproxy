@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class SysUser {
 
-    private BigInteger userid;
+    private Integer userid;
     private String username;
     private String password;
     private String salt;

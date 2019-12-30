@@ -25,13 +25,19 @@ public class ShiroConfig {
         * user:如果使用rememberMe的功能可以直接访问
         * perms:该资源必须得到资源权限才能访问
         * role:该资源必须得到角色权限权限才可以访问
-        * */
+        */
         Map<String,String> filterMap = new LinkedHashMap<String,String>();
         //拦截页面
-        filterMap.put("","");
+        filterMap.put("/sss","anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
+        shiroFilterFactoryBean.setLoginUrl("/login");
 
-        shiroFilterFactoryBean.setLoginUrl("login");
+        //授权过滤器
+        filterMap.put("/add","perms[user:add]");
+        filterMap.put("/update","perms[user:update]");
+        //设置未授权页面
+        shiroFilterFactoryBean.setUnauthorizedUrl("/error");
+
         return shiroFilterFactoryBean;
     }
 

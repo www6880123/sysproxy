@@ -1,6 +1,6 @@
 package com.example.sys.controller;
 
-import com.example.sys.service.SysService;
+import com.example.sys.service.SysUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class SysController {
 
     @Autowired
-    private SysService sysService;
+    private SysUserService sysUserService;
 
     @PostMapping("/login/{username}/{password}")
     public String login(@PathVariable("username") String username, @PathVariable("password") String password, Model model){
@@ -35,7 +35,7 @@ public class SysController {
         }
     }
 
-    @GetMapping("index")
+    @GetMapping("/index")
     public void index(){
         System.out.println("111");
     }
