@@ -6,6 +6,8 @@ import com.example.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SysUserServiceImpl implements SysUserService {
 
@@ -26,5 +28,10 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public String findPermsById(Integer id) {
         return sysUserDao.findPermsById(id);
+    }
+
+    @Override
+    public List<SysUser> getSysUserList() {
+        return sysUserDao.getSysUserList();
     }
 }

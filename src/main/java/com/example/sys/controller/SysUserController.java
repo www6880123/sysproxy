@@ -1,5 +1,6 @@
 package com.example.sys.controller;
 
+import com.example.sys.entity.SysUser;
 import com.example.sys.service.SysUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -9,10 +10,13 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/sys")
-public class SysController {
+public class SysUserController {
 
     @Autowired
     private SysUserService sysUserService;
@@ -38,6 +42,14 @@ public class SysController {
     @GetMapping("/index")
     public void index(){
         System.out.println("111");
+    }
+
+    @GetMapping("/getSysUserList")
+    public ModelAndView getSysUserList(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<SysUser> sysUserList = sysUserService.getSysUserList();
+        modelAndView.addObject("sysUserList",sysUserList);
+        return modelAndView;
     }
 
 }

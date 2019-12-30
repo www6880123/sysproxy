@@ -19,4 +19,8 @@
 		WHERE ur.user_id = #{userId}
     </select>
 
+    <select id="getSysUserList" resultType="com.example.sys.entity.SysUser">
+        select * from sys_user
+    </select>
+
 </mapper>
