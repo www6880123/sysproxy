@@ -24,4 +24,6 @@ public class AccountController {
         modelAndView.addObject("accountList",accountList);
         return modelAndView;
     }
+
+
 }

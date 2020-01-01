@@ -3,12 +3,12 @@ package com.example.sys.service.impl;
 import com.example.sys.dao.WithdrawalDao;
 import com.example.sys.entity.Withdrawal;
 import com.example.sys.service.WithdrawalService;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Mapper
+@Service
 public class WithdrawalServiceImpl implements WithdrawalService {
     @Autowired
     private WithdrawalDao withdrawalDao;
